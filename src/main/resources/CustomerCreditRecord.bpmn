@@ -1,0 +1,65 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<bpmn:definitions xmlns:bpmn="http://www.omg.org/spec/BPMN/20100524/MODEL" xmlns:bpmndi="http://www.omg.org/spec/BPMN/20100524/DI" xmlns:dc="http://www.omg.org/spec/DD/20100524/DC" xmlns:di="http://www.omg.org/spec/DD/20100524/DI" id="Definitions_0z9p5jn" targetNamespace="http://bpmn.io/schema/bpmn" exporter="Camunda Modeler" exporterVersion="4.4.0">
+  <bpmn:process id="CustomerCreditRecord" isExecutable="true">
+    <bpmn:startEvent id="StartEvent_1">
+      <bpmn:outgoing>Flow_0e6gqag</bpmn:outgoing>
+    </bpmn:startEvent>
+    <bpmn:endEvent id="Event_1cz3dah" name="process finished&#10;&#10;">
+      <bpmn:incoming>Flow_159vlcd</bpmn:incoming>
+    </bpmn:endEvent>
+    <bpmn:task id="Activity_16bijor" name="Credit Record of own bank">
+      <bpmn:incoming>Flow_0e6gqag</bpmn:incoming>
+      <bpmn:outgoing>Flow_1k8gg04</bpmn:outgoing>
+    </bpmn:task>
+    <bpmn:sequenceFlow id="Flow_0e6gqag" sourceRef="StartEvent_1" targetRef="Activity_16bijor" />
+    <bpmn:task id="Activity_1n6kg5j" name="Credit record of other bank">
+      <bpmn:incoming>Flow_1k8gg04</bpmn:incoming>
+      <bpmn:outgoing>Flow_05tn8f9</bpmn:outgoing>
+    </bpmn:task>
+    <bpmn:sequenceFlow id="Flow_1k8gg04" sourceRef="Activity_16bijor" targetRef="Activity_1n6kg5j" />
+    <bpmn:sequenceFlow id="Flow_05tn8f9" sourceRef="Activity_1n6kg5j" targetRef="Activity_04c4sm2" />
+    <bpmn:task id="Activity_04c4sm2" name="Foreign Credit record">
+      <bpmn:incoming>Flow_05tn8f9</bpmn:incoming>
+      <bpmn:outgoing>Flow_159vlcd</bpmn:outgoing>
+    </bpmn:task>
+    <bpmn:sequenceFlow id="Flow_159vlcd" sourceRef="Activity_04c4sm2" targetRef="Event_1cz3dah" />
+  </bpmn:process>
+  <bpmndi:BPMNDiagram id="BPMNDiagram_1">
+    <bpmndi:BPMNPlane id="BPMNPlane_1" bpmnElement="CustomerCreditRecord">
+      <bpmndi:BPMNEdge id="Flow_0e6gqag_di" bpmnElement="Flow_0e6gqag">
+        <di:waypoint x="215" y="117" />
+        <di:waypoint x="240" y="117" />
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge id="Flow_1k8gg04_di" bpmnElement="Flow_1k8gg04">
+        <di:waypoint x="340" y="117" />
+        <di:waypoint x="390" y="117" />
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge id="Flow_05tn8f9_di" bpmnElement="Flow_05tn8f9">
+        <di:waypoint x="490" y="117" />
+        <di:waypoint x="530" y="117" />
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge id="Flow_159vlcd_di" bpmnElement="Flow_159vlcd">
+        <di:waypoint x="630" y="117" />
+        <di:waypoint x="682" y="117" />
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNShape id="_BPMNShape_StartEvent_2" bpmnElement="StartEvent_1">
+        <dc:Bounds x="179" y="99" width="36" height="36" />
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="Activity_16bijor_di" bpmnElement="Activity_16bijor">
+        <dc:Bounds x="240" y="77" width="100" height="80" />
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="Activity_04c4sm2_di" bpmnElement="Activity_04c4sm2">
+        <dc:Bounds x="530" y="77" width="100" height="80" />
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="Activity_1n6kg5j_di" bpmnElement="Activity_1n6kg5j">
+        <dc:Bounds x="390" y="77" width="100" height="80" />
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="Event_1cz3dah_di" bpmnElement="Event_1cz3dah">
+        <dc:Bounds x="682" y="99" width="36" height="36" />
+        <bpmndi:BPMNLabel>
+          <dc:Bounds x="660" y="142" width="80" height="40" />
+        </bpmndi:BPMNLabel>
+      </bpmndi:BPMNShape>
+    </bpmndi:BPMNPlane>
+  </bpmndi:BPMNDiagram>
+</bpmn:definitions>

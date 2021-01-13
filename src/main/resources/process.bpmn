@@ -40,20 +40,12 @@
       <bpmn:incoming>Flow_1xwy5y6</bpmn:incoming>
       <bpmn:outgoing>Flow_1b8fejf</bpmn:outgoing>
     </bpmn:userTask>
-    <bpmn:userTask id="Activity_1728s5l" name="Evaluating customer&#39;s credit record">
-      <bpmn:incoming>Flow_1fzjsg4</bpmn:incoming>
-      <bpmn:outgoing>Flow_0dn76bw</bpmn:outgoing>
-    </bpmn:userTask>
     <bpmn:userTask id="Activity_1b6q5xx" name="Decline request">
       <bpmn:incoming>Flow_1ktwz80</bpmn:incoming>
       <bpmn:incoming>Flow_14g710z</bpmn:incoming>
       <bpmn:incoming>Flow_1iu318b</bpmn:incoming>
       <bpmn:outgoing>Flow_1naqlqk</bpmn:outgoing>
     </bpmn:userTask>
-    <bpmn:businessRuleTask id="Activity_0eqk3va" name="Evaluating a customer’s financial condition" camunda:decisionRef="">
-      <bpmn:incoming>Flow_0ohlvrd</bpmn:incoming>
-      <bpmn:outgoing>Flow_0yieq94</bpmn:outgoing>
-    </bpmn:businessRuleTask>
     <bpmn:sequenceFlow id="Flow_0ohlvrd" name="yes" sourceRef="Gateway_0jhf65p" targetRef="Activity_0eqk3va">
       <bpmn:conditionExpression xsi:type="bpmn:tFormalExpression">approve==true</bpmn:conditionExpression>
     </bpmn:sequenceFlow>
@@ -93,10 +85,6 @@
     </bpmn:task>
     <bpmn:sequenceFlow id="Flow_1o2pfn6" sourceRef="Activity_0n45q3p" targetRef="Activity_1dn6i8y" />
     <bpmn:sequenceFlow id="Flow_1dvc8nd" sourceRef="Activity_1ftc2sp" targetRef="Activity_0n45q3p" />
-    <bpmn:task id="Activity_0n45q3p" name="Decide who has to approve loan">
-      <bpmn:incoming>Flow_1dvc8nd</bpmn:incoming>
-      <bpmn:outgoing>Flow_1o2pfn6</bpmn:outgoing>
-    </bpmn:task>
     <bpmn:sequenceFlow id="Flow_16p2yfu" sourceRef="Activity_1dn6i8y" targetRef="Gateway_1vnuaud" />
     <bpmn:sequenceFlow id="Flow_0uty0op" name="no&#10;&#10;" sourceRef="Gateway_1vnuaud" targetRef="Activity_16ps1mf">
       <bpmn:conditionExpression xsi:type="bpmn:tFormalExpression">approve==false</bpmn:conditionExpression>
@@ -120,6 +108,18 @@
       <bpmn:incoming>Flow_0uty0op</bpmn:incoming>
       <bpmn:outgoing>Flow_0hkeolw</bpmn:outgoing>
     </bpmn:callActivity>
+    <bpmn:task id="Activity_1728s5l" name="Evaluating customer&#39;s credit record">
+      <bpmn:incoming>Flow_1fzjsg4</bpmn:incoming>
+      <bpmn:outgoing>Flow_0dn76bw</bpmn:outgoing>
+    </bpmn:task>
+    <bpmn:businessRuleTask id="Activity_0n45q3p" name="Decide who has to approve loan" camunda:decisionRef="ApproveDecision">
+      <bpmn:incoming>Flow_1dvc8nd</bpmn:incoming>
+      <bpmn:outgoing>Flow_1o2pfn6</bpmn:outgoing>
+    </bpmn:businessRuleTask>
+    <bpmn:task id="Activity_0eqk3va" name="Evaluating a customer’s financial condition">
+      <bpmn:incoming>Flow_0ohlvrd</bpmn:incoming>
+      <bpmn:outgoing>Flow_0yieq94</bpmn:outgoing>
+    </bpmn:task>
   </bpmn:process>
   <bpmndi:BPMNDiagram id="BPMNDiagram_1">
     <bpmndi:BPMNPlane id="BPMNPlane_1" bpmnElement="Bank-credit-process-process">
@@ -139,9 +139,8 @@
         </bpmndi:BPMNLabel>
       </bpmndi:BPMNEdge>
       <bpmndi:BPMNEdge id="Flow_1dvc8nd_di" bpmnElement="Flow_1dvc8nd">
-        <di:waypoint x="780" y="432" />
-        <di:waypoint x="780" y="480" />
-        <di:waypoint x="890" y="480" />
+        <di:waypoint x="830" y="392" />
+        <di:waypoint x="890" y="392" />
       </bpmndi:BPMNEdge>
       <bpmndi:BPMNEdge id="Flow_1naqlqk_di" bpmnElement="Flow_1naqlqk">
         <di:waypoint x="2316" y="610" />
@@ -191,9 +190,8 @@
         </bpmndi:BPMNLabel>
       </bpmndi:BPMNEdge>
       <bpmndi:BPMNEdge id="Flow_1o2pfn6_di" bpmnElement="Flow_1o2pfn6">
-        <di:waypoint x="990" y="480" />
-        <di:waypoint x="1100" y="480" />
-        <di:waypoint x="1100" y="432" />
+        <di:waypoint x="990" y="392" />
+        <di:waypoint x="1050" y="392" />
       </bpmndi:BPMNEdge>
       <bpmndi:BPMNEdge id="Flow_1utqlwy_di" bpmnElement="Flow_1utqlwy">
         <di:waypoint x="195" y="392" />
@@ -269,12 +267,6 @@
       <bpmndi:BPMNShape id="Activity_1b6q5xx_di" bpmnElement="Activity_1b6q5xx">
         <dc:Bounds x="2216" y="570" width="100" height="80" />
       </bpmndi:BPMNShape>
-      <bpmndi:BPMNShape id="Activity_0ctg3mp_di" bpmnElement="Activity_1728s5l">
-        <dc:Bounds x="1550" y="352" width="100" height="80" />
-      </bpmndi:BPMNShape>
-      <bpmndi:BPMNShape id="Activity_14e8ux3_di" bpmnElement="Activity_0eqk3va">
-        <dc:Bounds x="1810" y="352" width="100" height="80" />
-      </bpmndi:BPMNShape>
       <bpmndi:BPMNShape id="Event_1sr6rlm_di" bpmnElement="Event_1sr6rlm">
         <dc:Bounds x="159" y="374" width="36" height="36" />
       </bpmndi:BPMNShape>
@@ -292,9 +284,6 @@
       </bpmndi:BPMNShape>
       <bpmndi:BPMNShape id="Activity_03l66xl_di" bpmnElement="Activity_1ftc2sp">
         <dc:Bounds x="730" y="352" width="100" height="80" />
-      </bpmndi:BPMNShape>
-      <bpmndi:BPMNShape id="Activity_0n45q3p_di" bpmnElement="Activity_0n45q3p">
-        <dc:Bounds x="890" y="440" width="100" height="80" />
       </bpmndi:BPMNShape>
       <bpmndi:BPMNShape id="Activity_0rr1e0j_di" bpmnElement="Activity_16ps1mf">
         <dc:Bounds x="1280" y="130" width="100" height="80" />
@@ -319,6 +308,15 @@
         <bpmndi:BPMNLabel>
           <dc:Bounds x="1310" y="427" width="40" height="14" />
         </bpmndi:BPMNLabel>
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="Activity_1k9op1z_di" bpmnElement="Activity_1728s5l">
+        <dc:Bounds x="1550" y="352" width="100" height="80" />
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="Activity_113twj1_di" bpmnElement="Activity_0n45q3p">
+        <dc:Bounds x="890" y="352" width="100" height="80" />
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="Activity_04brh7h_di" bpmnElement="Activity_0eqk3va">
+        <dc:Bounds x="1810" y="352" width="100" height="80" />
       </bpmndi:BPMNShape>
     </bpmndi:BPMNPlane>
   </bpmndi:BPMNDiagram>

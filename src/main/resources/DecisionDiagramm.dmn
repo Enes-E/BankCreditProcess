@@ -1,0 +1,69 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<definitions xmlns="https://www.omg.org/spec/DMN/20191111/MODEL/" xmlns:dmndi="https://www.omg.org/spec/DMN/20191111/DMNDI/" xmlns:dc="http://www.omg.org/spec/DMN/20180521/DC/" xmlns:biodi="http://bpmn.io/schema/dmn/biodi/2.0" id="Definitions_0nr69cf" name="DRD" namespace="http://camunda.org/schema/1.0/dmn" exporter="Camunda Modeler" exporterVersion="4.4.0">
+  <decision id="Decision_0rdhxa7" name="Decide who has to approve loan">
+    <decisionTable id="DecisionTable_0b85w4p">
+      <input id="Input_1" label="loanAmount" biodi:width="191.30435180664062">
+        <inputExpression id="InputExpression_1" typeRef="double">
+          <text></text>
+        </inputExpression>
+      </input>
+      <input id="InputClause_1rxp5ku" label="loanAmount">
+        <inputExpression id="LiteralExpression_0un4suj" typeRef="double">
+          <text></text>
+        </inputExpression>
+      </input>
+      <output id="Output_1" typeRef="string" />
+      <rule id="DecisionRule_13zk605">
+        <inputEntry id="UnaryTests_1pq7gzf">
+          <text>&gt;0</text>
+        </inputEntry>
+        <inputEntry id="UnaryTests_0neluc5">
+          <text>&lt;=10000</text>
+        </inputEntry>
+        <outputEntry id="LiteralExpression_1wsibe0">
+          <text>BankEmployee</text>
+        </outputEntry>
+      </rule>
+      <rule id="DecisionRule_1cxqq2b">
+        <inputEntry id="UnaryTests_0mu6drh">
+          <text>&gt;10000</text>
+        </inputEntry>
+        <inputEntry id="UnaryTests_1s5ww0f">
+          <text>&lt;=100000</text>
+        </inputEntry>
+        <outputEntry id="LiteralExpression_0zla5w2">
+          <text>BranchManager</text>
+        </outputEntry>
+      </rule>
+      <rule id="DecisionRule_1um44h2">
+        <inputEntry id="UnaryTests_1ge4ha6">
+          <text>&gt;100000</text>
+        </inputEntry>
+        <inputEntry id="UnaryTests_0ehlain">
+          <text>&lt;=1000000</text>
+        </inputEntry>
+        <outputEntry id="LiteralExpression_0pa0c1j">
+          <text>BankManager</text>
+        </outputEntry>
+      </rule>
+      <rule id="DecisionRule_0pxk8h8">
+        <inputEntry id="UnaryTests_0ri9fww">
+          <text>&gt;1000000</text>
+        </inputEntry>
+        <inputEntry id="UnaryTests_02ix9sk">
+          <text>&lt;=10000000</text>
+        </inputEntry>
+        <outputEntry id="LiteralExpression_0q87ufw">
+          <text>Commission</text>
+        </outputEntry>
+      </rule>
+    </decisionTable>
+  </decision>
+  <dmndi:DMNDI>
+    <dmndi:DMNDiagram>
+      <dmndi:DMNShape dmnElementRef="Decision_0rdhxa7">
+        <dc:Bounds height="80" width="180" x="340" y="140" />
+      </dmndi:DMNShape>
+    </dmndi:DMNDiagram>
+  </dmndi:DMNDI>
+</definitions>
