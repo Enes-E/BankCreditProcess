@@ -34,7 +34,7 @@ jobs:
       run: mvn -ntp pmd:pmd -Dvamen.repo.local=${{env.MAVEN_USER_HOME}}
 
   test:
-    needs: [build]
+    needs: [check]
     runs-on: ubuntu-latest
     env:
       MAVEN_USER_HOME: ${{ github.workspace }}/.maven
