@@ -25,8 +25,8 @@ class SetupLoanAgreementTest {
 
     @Test
     void setupLoanAgreementTask() throws FileNotFoundException {
-        insertData();
         setupFile();
+        insertData();
         getLoanData();
         getCustomerData();
     }
@@ -34,7 +34,7 @@ class SetupLoanAgreementTest {
     @Test
     void insertData() throws FileNotFoundException {
         setupLoanAgreement.InsertData("Hans Haus","Auto");
-        Path path = Paths.get("C:/Users/kami/OneDrive - FH Vorarlberg/Master/sem1/Software Lebenszyklus und Qualität/Sieber/BankCreditProcess/LoanAgreement.txt");
+        Path path = Paths.get("/src/main/resources/LoanAgreement.txt");
         StringBuilder stb = new StringBuilder();
         try(Stream<String> stream = Files.lines(path)) {
             stream.forEach(s -> stb.append(s).append("\n"));
@@ -50,7 +50,7 @@ class SetupLoanAgreementTest {
     @Test
     void setupFile() {
         setupLoanAgreement.SetupFile();
-        File file = new File("C:/Users/kami/OneDrive - FH Vorarlberg/Master/sem1/Software Lebenszyklus und Qualität/Sieber/BankCreditProcess/LoanAgreement.txt");
+        File file = new File("/src/main/resources/LoanAgreement.txt");
         assertTrue(file.exists());
         assertTrue(file.isFile());
     }

@@ -39,7 +39,7 @@ public class SetupLoanAgreement implements JavaDelegate {
         stb.append(loanData);
         stb.append("\nSigned by: kami");
         try {
-            Files.write(Paths.get("LoanAgreement.txt"), stb.toString().getBytes(), StandardOpenOption.WRITE);
+            Files.write(Paths.get("/src/main/resources/LoanAgreement.txt"), stb.toString().getBytes(), StandardOpenOption.WRITE);
         }catch (IOException e) {
             LOGGER.warning(e.getMessage());
         }
@@ -48,7 +48,7 @@ public class SetupLoanAgreement implements JavaDelegate {
 
     public void SetupFile() {
         try {
-            File myObj = new File("LoanAgreement.txt");
+            File myObj = new File("/src/main/resources/LoanAgreement.txt");
             if (myObj.createNewFile()) {
                LOGGER.info("File created: " + myObj.getName());
             } else {
