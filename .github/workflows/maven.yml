@@ -27,6 +27,7 @@ jobs:
     env:
       MAVEN_USER_HOME: ${{ github.workspace }}/.maven
     steps:
+    - uses: actions/checkout@v2
     - name: Checkstyle
       run: mvn -B verify checkstyle:checkstyle
     - name: Maven PMD
