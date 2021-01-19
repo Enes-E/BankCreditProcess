@@ -33,3 +33,14 @@ jobs:
     - name: Maven PMD
       run: mvn -ntp pmd:pmd -Dvamen.repo.local=${{env.MAVEN_USER_HOME}}
 
+  test:
+    needs: [builld]
+    runs-on: ubuntu-latest
+    env:
+      MAVEN_USER_HOME: ${{ github.workspace }}/.maven
+    steps:
+      - uses: actions/checkout@v2
+      - name: Maven-Test
+        run: mvn -ntp test -Dmaven.repo.local=$MAVEN_USER_HOME
+
+
