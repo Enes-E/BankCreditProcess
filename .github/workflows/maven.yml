@@ -12,8 +12,6 @@ on:
 jobs:
   build:
     runs-on: ubuntu-latest
-    env:
-      MAVEN_USER_HOME: ${{ github.workspace }}/.maven
     steps:
     - uses: actions/checkout@v2
     - name: Set up JDK 1.8
@@ -22,6 +20,13 @@ jobs:
         java-version: 1.8
     - name: Build with Maven
       run: mvn -B package --file pom.xml
+
+  check:
+    needs: [build]
+    runs-on: ubuntu-latest
+    env:
+      MAVEN_USER_HOME: ${{ github.workspace }}/.maven
+    steps:
     - name: Checkstyle
       run: mvn -B verify checkstyle:checkstyle
     - name: Maven PMD
