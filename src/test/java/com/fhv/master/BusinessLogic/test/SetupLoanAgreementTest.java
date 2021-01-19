@@ -20,21 +20,28 @@ class SetupLoanAgreementTest {
 
     @Test
     void execute() {
-
-    }
+        boolean execute = setupLoanAgreement.execute();
+        assertTrue(execute);
+        }
 
     @Test
     void setupLoanAgreementTask() throws FileNotFoundException {
-        insertData();
-        setupFile();
-        getLoanData();
-        getCustomerData();
+        boolean setup = setupLoanAgreement.SetupLoanAgreementTask();
+        assertTrue(setup);
+    }
+
+    @Test
+    void setupFile() {
+        setupLoanAgreement.SetupFile();
+        File file = new File("LoanAgreement.txt");
+        assertTrue(file.exists());
+        assertTrue(file.isFile());
     }
 
     @Test
     void insertData() throws FileNotFoundException {
         setupLoanAgreement.InsertData("Hans Haus","Auto");
-        Path path = Paths.get("C:/Users/kami/OneDrive - FH Vorarlberg/Master/sem1/Software Lebenszyklus und Qualität/Sieber/BankCreditProcess/LoanAgreement.txt");
+        Path path = Paths.get("LoanAgreement.txt");
         StringBuilder stb = new StringBuilder();
         try(Stream<String> stream = Files.lines(path)) {
             stream.forEach(s -> stb.append(s).append("\n"));
@@ -45,14 +52,6 @@ class SetupLoanAgreementTest {
         assertTrue(stb.toString().contains("Hans Haus"));
         assertTrue(stb.toString().contains("Auto"));
 
-    }
-
-    @Test
-    void setupFile() {
-        setupLoanAgreement.SetupFile();
-        File file = new File("C:/Users/kami/OneDrive - FH Vorarlberg/Master/sem1/Software Lebenszyklus und Qualität/Sieber/BankCreditProcess/LoanAgreement.txt");
-        assertTrue(file.exists());
-        assertTrue(file.isFile());
     }
 
     @Test

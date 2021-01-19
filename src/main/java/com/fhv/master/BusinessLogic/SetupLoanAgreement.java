@@ -2,7 +2,6 @@ package com.fhv.master.BusinessLogic;
 
 import org.camunda.bpm.engine.delegate.DelegateExecution;
 import org.camunda.bpm.engine.delegate.JavaDelegate;
-
 import java.io.File;
 import java.io.IOException;
 import java.nio.file.Files;
@@ -14,21 +13,32 @@ public class SetupLoanAgreement implements JavaDelegate {
 
     private final Logger LOGGER = Logger.getLogger(SetupLoanAgreement.class.getName());
 
-
     @Override
     public void execute(DelegateExecution delegateExecution) throws Exception {
         SetupLoanAgreementTask();
     }
-    public void execute() {
-        SetupLoanAgreementTask();
+
+    public boolean execute() {
+        try {
+            SetupLoanAgreementTask();
+        }catch (Exception e){
+            e.printStackTrace();
+            return false;
+        }
+        return true;
     }
 
-    public void SetupLoanAgreementTask() {
-        String customerData = GetCustomerData();
-        String loanData = GetLoanData();
-        SetupFile();
-        InsertData(customerData,loanData);
-
+    public boolean SetupLoanAgreementTask() {
+        try{
+            String customerData = GetCustomerData();
+            String loanData = GetLoanData();
+            SetupFile();
+            InsertData(customerData,loanData);
+        } catch (Exception e) {
+            e.printStackTrace();
+            return false;
+        }
+        return true;
     }
 
     public void InsertData(String customerData, String loanData) {
@@ -43,7 +53,6 @@ public class SetupLoanAgreement implements JavaDelegate {
         }catch (IOException e) {
             LOGGER.warning(e.getMessage());
         }
-
     }
 
     public void SetupFile() {
@@ -67,6 +76,4 @@ public class SetupLoanAgreement implements JavaDelegate {
     public String GetCustomerData() {
         return "Hans Meier";
     }
-
-
 }
