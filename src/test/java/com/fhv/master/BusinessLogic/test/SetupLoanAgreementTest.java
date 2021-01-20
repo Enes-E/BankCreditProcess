@@ -1,12 +1,10 @@
 package com.fhv.master.BusinessLogic.test;
 
 import com.fhv.master.BusinessLogic.SetupLoanAgreement;
-import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
 import java.io.File;
 import java.io.FileNotFoundException;
-import java.io.FileReader;
 import java.io.IOException;
 import java.nio.file.Files;
 import java.nio.file.Path;
@@ -19,7 +17,7 @@ class SetupLoanAgreementTest {
     SetupLoanAgreement setupLoanAgreement = new SetupLoanAgreement();
 
     @Test
-    void execute() {
+    void execute() throws Exception {
         boolean execute = setupLoanAgreement.execute();
         assertTrue(execute);
     }
@@ -40,7 +38,7 @@ class SetupLoanAgreementTest {
 
     @Test
     void insertData() throws FileNotFoundException {
-        setupLoanAgreement.InsertData("Hans Haus","Auto");
+        setupLoanAgreement.InsertData("Hans Haus","Auto","kami");
         Path path = Paths.get("LoanAgreement.txt");
         StringBuilder stb = new StringBuilder();
         try(Stream<String> stream = Files.lines(path)) {
@@ -51,7 +49,14 @@ class SetupLoanAgreementTest {
 
         assertTrue(stb.toString().contains("Hans Haus"));
         assertTrue(stb.toString().contains("Auto"));
+        assertTrue(stb.toString().contains("kami"));
 
+    }
+
+    @Test
+    void SendAgreementToCustomer() {
+        boolean sending = setupLoanAgreement.SendAgreementToCustomer();
+        assertTrue(sending);
     }
 
     @Test
@@ -64,5 +69,11 @@ class SetupLoanAgreementTest {
     void getCustomerData() {
         String cusomerData = setupLoanAgreement.GetCustomerData();
         assertNotSame("", cusomerData);
+    }
+
+    @Test
+    void getCashier() {
+        String cashier = setupLoanAgreement.GetCashier();
+        assertNotSame("",cashier);
     }
 }
