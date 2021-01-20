@@ -15,12 +15,13 @@ public class SetupLoanAgreement implements JavaDelegate {
 
     @Override
     public void execute(DelegateExecution delegateExecution) throws Exception {
-        SetupLoanAgreementTask();
+        execute();
     }
 
     public boolean execute() {
         try {
             SetupLoanAgreementTask();
+            SendAgreementToCustomer();
         }catch (Exception e){
             e.printStackTrace();
             return false;
@@ -32,27 +33,14 @@ public class SetupLoanAgreement implements JavaDelegate {
         try{
             String customerData = GetCustomerData();
             String loanData = GetLoanData();
+            String cashier = GetCashier();
             SetupFile();
-            InsertData(customerData,loanData);
+            InsertData(customerData,loanData, cashier);
         } catch (Exception e) {
             e.printStackTrace();
             return false;
         }
         return true;
-    }
-
-    public void InsertData(String customerData, String loanData) {
-        StringBuilder stb = new StringBuilder();
-        stb.append("Loan aggrement for: ");
-        stb .append(customerData);
-        stb.append("\nWith the following data: ");
-        stb.append(loanData);
-        stb.append("\nSigned by: kami");
-        try {
-            Files.write(Paths.get("LoanAgreement.txt"), stb.toString().getBytes(), StandardOpenOption.WRITE);
-        }catch (IOException e) {
-            LOGGER.warning(e.getMessage());
-        }
     }
 
     public void SetupFile() {
@@ -69,11 +57,51 @@ public class SetupLoanAgreement implements JavaDelegate {
         }
     }
 
+    public void InsertData(String customerData, String loanData, String cashier) {
+        StringBuilder stb = new StringBuilder();
+        stb.append("Loan aggrement for: ");
+        stb .append(customerData);
+        stb.append("\nWith the following data: ");
+        stb.append(loanData);
+        stb.append("\nSigned by: ");
+        stb.append(cashier);
+        try {
+            Files.write(Paths.get("LoanAgreement.txt"), stb.toString().getBytes(), StandardOpenOption.WRITE);
+        }catch (IOException e) {
+            LOGGER.warning(e.getMessage());
+        }
+    }
+
+    public boolean SendAgreementToCustomer() {
+        try {
+            String customer = GetCustomerData();
+            String loanAgreement = GetLoanData();
+            String cashier = GetCashier();
+            StringBuilder stb = new StringBuilder();
+            stb.append("Sehr geehrter Kunde,");
+            stb.append(customer);
+            stb.append("\nWir senden Ihnen ihren Vertrag von ");
+            stb.append(loanAgreement);
+            stb.append("mit freundlichen Grüßen, ");
+            stb.append(cashier);
+
+            LOGGER.info("Agreement Sent");
+        } catch (Exception e) {
+            e.printStackTrace();
+            return false;
+        }
+        return true;
+    }
+
     public String GetLoanData() {
         return "Building a house for 1000000";
     }
 
     public String GetCustomerData() {
         return "Hans Meier";
+    }
+
+    public String GetCashier(){
+        return "kami";
     }
 }
