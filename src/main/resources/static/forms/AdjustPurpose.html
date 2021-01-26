@@ -1,25 +1,33 @@
 <form>
-    <h1>Is the given purpose reasonable?</h1>
-    <label>Purpose: </label>
+    <h1>Can the customer adjust the purpose?</h1>
+    <label>Current purpose: </label>
     <input cam-variable-name="loanPurpose"
            type="text"
            name="loanPurpose"
            readonly="true"/>
-    <div class="form-group">
+        <div class="form-group">
         <div class="col-md-10 col-md-offset-2">
             <div class="checkbox">
                 <label>
-                    <input cam-variable-name="approved"
+                    <input cam-variable-name="successfull"
                            cam-variable-type="Boolean"
                            type="checkbox"
-                           name="approved"
+                           name="successfull"
                            class="form-control" />
                     Yes
                     <br>
-                    <input type="checkbox" />
+                    <input
+                            type="checkbox" />
                     No
                 </label>
             </div>
         </div>
     </div>
+    If yes, what is the adjusted purpose:
+    <input
+            cam-variable-name="loanPurpose"
+            cam-variable-type="String"
+            type="text" name="loanPurpose"
+            placeholder="Reason for the loan"/>
+
 </form>

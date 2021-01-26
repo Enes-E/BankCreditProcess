@@ -2,7 +2,7 @@
 <definitions xmlns="https://www.omg.org/spec/DMN/20191111/MODEL/" xmlns:dmndi="https://www.omg.org/spec/DMN/20191111/DMNDI/" xmlns:dc="http://www.omg.org/spec/DMN/20180521/DC/" xmlns:biodi="http://bpmn.io/schema/dmn/biodi/2.0" id="ApproveDecision" name="DRD" namespace="http://camunda.org/schema/1.0/dmn" exporter="Camunda Modeler" exporterVersion="4.4.0">
   <decision id="Decision_0rdhxa7" name="Decide who has to approve loan">
     <decisionTable id="DecisionTable_0b85w4p">
-      <input id="Input_1" label="loanAmount" biodi:width="190.43478393554688">
+      <input id="Input_1" label="loanAmount" biodi:width="190">
         <inputExpression id="InputExpression_1" typeRef="integer">
           <text>loanAmount</text>
         </inputExpression>
@@ -12,7 +12,11 @@
           <text>loanAmount</text>
         </inputExpression>
       </input>
-      <output id="Output_1" name="decitionmaker" typeRef="string" />
+      <output id="Output_1" label="decisionMaker" name="decisionMaker" typeRef="string" biodi:width="191.30435180664062">
+        <outputValues id="UnaryTests_1wubj6k">
+          <text>"Predefined"</text>
+        </outputValues>
+      </output>
       <rule id="DecisionRule_13zk605">
         <inputEntry id="UnaryTests_1pq7gzf">
           <text>&gt;0</text>
@@ -21,7 +25,7 @@
           <text>&lt;=10000</text>
         </inputEntry>
         <outputEntry id="LiteralExpression_1wsibe0">
-          <text>"BankEmployee"</text>
+          <text>"Manfred Mueller"</text>
         </outputEntry>
       </rule>
       <rule id="DecisionRule_1cxqq2b">
@@ -32,7 +36,7 @@
           <text>&lt;=100000</text>
         </inputEntry>
         <outputEntry id="LiteralExpression_0zla5w2">
-          <text>"BranchManager"</text>
+          <text>"Sabrina Stolz"</text>
         </outputEntry>
       </rule>
       <rule id="DecisionRule_1um44h2">
@@ -43,7 +47,7 @@
           <text>&lt;=1000000</text>
         </inputEntry>
         <outputEntry id="LiteralExpression_0pa0c1j">
-          <text>"BankManager"</text>
+          <text>"Hildegard Bachmann"</text>
         </outputEntry>
       </rule>
       <rule id="DecisionRule_0pxk8h8">
@@ -54,7 +58,7 @@
           <text>&lt;=10000000</text>
         </inputEntry>
         <outputEntry id="LiteralExpression_0q87ufw">
-          <text>"Commission"</text>
+          <text>"Thomas Deuring"</text>
         </outputEntry>
       </rule>
     </decisionTable>
