@@ -38,7 +38,8 @@ class SetupLoanAgreementTest {
 
     @Test
     void insertData() throws FileNotFoundException {
-        setupLoanAgreement.InsertData("Hans Haus","Auto","kami");
+        setupLoanAgreement.CreateAgreement("Max","Mustermann",10000,
+                "Auto", "Renate");
         Path path = Paths.get("LoanAgreement.txt");
         StringBuilder stb = new StringBuilder();
         try(Stream<String> stream = Files.lines(path)) {
@@ -47,9 +48,10 @@ class SetupLoanAgreementTest {
             e.printStackTrace();
         }
 
-        assertTrue(stb.toString().contains("Hans Haus"));
-        assertTrue(stb.toString().contains("Auto"));
-        assertTrue(stb.toString().contains("kami"));
+        assertTrue(stb.toString().contains("Max"));
+        assertTrue(stb.toString().contains("Mustermann"));
+        assertTrue(stb.toString().contains("Max"));
+        assertTrue(stb.toString().contains("Renate"));
 
     }
 
