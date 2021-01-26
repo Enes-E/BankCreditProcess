@@ -24,9 +24,9 @@ public class SetupLoanAgreement implements JavaDelegate {
     public void execute(DelegateExecution delegateExecution) throws Exception {
         loanAmount = (Integer) delegateExecution.getVariable("loanAmount");
         customerFirstName = (String) delegateExecution.getVariable("customerFirstName");
-        customerLastName = (String) delegateExecution.getVariable("customerFirstName");
-        loanPurpose = (String) delegateExecution.getVariable("customerFirstName");
-        cashier = (String) delegateExecution.getVariable("customerFirstName");
+        customerLastName = (String) delegateExecution.getVariable("customerLastName");
+        loanPurpose = (String) delegateExecution.getVariable("loanPurpose");
+        cashier = (String) delegateExecution.getVariable("cashier");
         execute();
     }
 
