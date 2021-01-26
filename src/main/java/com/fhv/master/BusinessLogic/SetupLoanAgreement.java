@@ -90,7 +90,7 @@ public class SetupLoanAgreement implements JavaDelegate {
     }
 
     public String getAgreementContent() throws IOException {
-        try(FileInputStream inputStream = new FileInputStream("/LoanAgreement.txt")) {
+        try(FileInputStream inputStream = new FileInputStream("LoanAgreement.txt")) {
             return IOUtils.toString(inputStream);
         }
     }
