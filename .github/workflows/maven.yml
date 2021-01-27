@@ -53,5 +53,5 @@ jobs:
         with:
           clientConfig: ${{ secrets.ZEEBE_CLIENT_CONFIG }}
           operation: deployWorkflow
-          bpmnDirectory: process.bpmn
+          bpmnDirectory: src/main/resources/process.bpmn
 
