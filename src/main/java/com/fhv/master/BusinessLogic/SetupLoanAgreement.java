@@ -79,8 +79,8 @@ public class SetupLoanAgreement implements JavaDelegate {
         stb.append(loanPurpose);
         stb.append("\n Amount: ");
         stb.append(loanAmount);
-        stb.append("\n Signed by: ");
-        stb.append(decisionMaker);
+//        stb.append("\n Signed by: ");
+//        stb.append(decisionMaker);
 
         try {
             Files.write(Paths.get("LoanAgreement.txt"), stb.toString().getBytes(), StandardOpenOption.WRITE);
