@@ -52,8 +52,6 @@ class SetupLoanAgreementTest {
         assertTrue(stb.toString().contains("Max"));
         assertTrue(stb.toString().contains("Mustermann"));
         assertTrue(stb.toString().contains("Max"));
-        assertTrue(stb.toString().contains("Renate"));
-
     }
 
     @Test
