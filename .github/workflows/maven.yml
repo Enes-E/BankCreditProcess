@@ -42,5 +42,16 @@ jobs:
       - uses: actions/checkout@v2
       - name: Maven-Test
         run: mvn -ntp test -Dmaven.repo.local=$MAVEN_USER_HOME
-
+  
+  deploy:
+    needs : [test]
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v2
+      - name: Deploy Updated Workflows
+        uses: jwulf/zeebe-action@master
+        with:
+          clientConfig: ${{ secrets.ZEEBE_CLIENT_CONFIG }}
+          operation: deployWorkflow
+          bpmnDirectory: bpmn
 
