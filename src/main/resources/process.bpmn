@@ -34,7 +34,7 @@
       <bpmn:outgoing>Flow_14g710z</bpmn:outgoing>
       <bpmn:outgoing>Flow_1oicjjb</bpmn:outgoing>
     </bpmn:exclusiveGateway>
-    <bpmn:userTask id="Activity_1jzkw84" name="Signing the loan agreement" camunda:formKey="embedded:app:forms/SignLoanAgreement.html">
+    <bpmn:userTask id="Activity_1jzkw84" name="Signing the loan agreement" camunda:formKey="embedded:app:forms/AdjustPurpose.html">
       <bpmn:incoming>Flow_0vferj9</bpmn:incoming>
       <bpmn:outgoing>Flow_073bxge</bpmn:outgoing>
     </bpmn:userTask>
