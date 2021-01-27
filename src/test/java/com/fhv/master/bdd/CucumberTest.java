@@ -1,4 +1,4 @@
-package bdd;
+package com.fhv.master.bdd;
 
 import org.junit.runner.RunWith;
 import io.cucumber.junit.Cucumber;

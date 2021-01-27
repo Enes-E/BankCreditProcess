@@ -1,4 +1,4 @@
-package bdd;
+package com.fhv.master.bdd;
 
 import static org.camunda.bpm.engine.test.assertions.bpmn.BpmnAwareTests.*;
 
@@ -16,8 +16,6 @@ import io.cucumber.java.After;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.camunda.bpm.engine.RuntimeService;
 import org.camunda.bpm.engine.runtime.ProcessInstance;
-import org.camunda.bpm.engine.variable.value.FileValue;
-import org.camunda.bpm.engine.variable.Variables;
 import org.camunda.bpm.engine.ProcessEngine;
 
 

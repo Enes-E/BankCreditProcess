@@ -48,6 +48,13 @@
       <artifactId>spring-boot-starter-jdbc</artifactId>
     </dependency>
     <dependency>
+      <groupId>org.camunda.bpm.assert</groupId>
+      <artifactId>camunda-bpm-assert</artifactId>
+      <version>8.0.0</version>
+      <scope>test</scope>
+    </dependency>
+
+    <dependency>
       <groupId>io.cucumber</groupId>
       <artifactId>cucumber-java</artifactId>
       <version>6.8.2</version>
@@ -65,8 +72,6 @@
       <version>6.8.2</version>
       <scope>test</scope>
     </dependency>
-
-
 
   </dependencies>
 

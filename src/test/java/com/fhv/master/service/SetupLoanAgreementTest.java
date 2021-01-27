@@ -1,4 +1,4 @@
-package com.fhv.master.BusinessLogic.test;
+package com.fhv.master.service;
 
 import com.fhv.master.BusinessLogic.SetupLoanAgreement;
 import org.junit.jupiter.api.Test;

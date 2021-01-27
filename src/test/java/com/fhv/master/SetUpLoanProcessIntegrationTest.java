@@ -1,4 +1,4 @@
-package com.fhv.master.BusinessLogic;
+package com.fhv.master;
 
 import static org.camunda.bpm.engine.test.assertions.bpmn.BpmnAwareTests.*;
 
