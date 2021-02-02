@@ -30,7 +30,7 @@ import org.camunda.bpm.engine.ProcessEngine;
 )
 @CucumberContextConfiguration
 @ContextConfiguration(classes = TestConfiguration.class)
-public class CheckCharacter {
+public class CheckCustomerName {
 
     @Autowired
     ProcessEngine processEngine;
@@ -49,21 +49,34 @@ public class CheckCharacter {
         System.out.println("Stopping a InvoiceProcess scenario");
     }
 
-
-
-    @Given("I have the firstname and the lastname")
-    public void iHaveTheFirstnameAndTheLastname() {
+    @Given("The customer {string} {string} gives his firstname and lastname.")
+    public void theCustomerMaxHeermannGivesHisFirstnameAndLastname(String firstName, String lastName) {
+        this.instance = this.runtimeService.startProcessInstanceByKey("Bank-credit-process-process",
+                withVariables("loanAmount", 1000, "customerFirstName", firstName, "customerLastName", lastName,
+                        "loanPurpose", "New Car",
+                        "decisionMaker", "Manfred Mueller",
+                        "approved", "True"));
+        assertThat(this.instance).isNotNull();
+        assertThat(this.instance).isStarted();
     }
 
-    @And("I check the yes checkbox")
-    public void iCheckTheYesCheckbox() {
+
+    @And("The firstname and the lastname of {string} {string} is registered")
+    public void theFirstnameAndTheLastnameOfMaxHeermannIsRegistered(String firstName, String lastName) {
+        complete(task(this.instance), withVariables("customerFirstName", firstName,
+                "customerLastName", lastName));
     }
 
-    @When("I confirm my entries")
-    public void iConfirmMyEntries() {
+    @When("Customer Data Collection is done")
+    public void customerDataCollectionIsDone() {
+        assertThat(this.instance).hasPassed("Activity_1o07twh");
+        complete(task(this.instance), withVariables("customerFirstName", "Max",
+                "customerLastName", "Heermann", "approved", true));
     }
 
-    @Then("It should be checked if the customers character is ok")
-    public void itShouldBeCheckedIfTheCustomersCharacterIsOk() {
+    @Then("The customers character is evaluated")
+    public void theCustomersCharacterIsEvaluated() {
+        assertThat(this.instance).hasPassed("Activity_1o07twh");
     }
+
 }
