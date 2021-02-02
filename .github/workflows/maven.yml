@@ -43,10 +43,14 @@ jobs:
       - name: Maven-Test
         run: mvn -ntp test -Dmaven.repo.local=$MAVEN_USER_HOME
   
-  heroku-deploy:
-    runs-on: ubuntu-lastest
+  deploy:
+    name: deploying
+    needs: [test]
+    runs-on: ubuntu-latest
+    env:
+      MAVEN_USER_HOME: ${{ github.workspace }}/.maven
     steps:
       - uses: actions/checkout@v2
-      - name: deploy
-        run: mvn -ntp heroku:deploy -DskipTests -Dmaven.repo.local=$MAVEN_USER_HOME
+      - name: heroku-deploy
+        run: mvn -ntp test -Dmaven.repo.local=$MAVEN_USER_HOME
 
