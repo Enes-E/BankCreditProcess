@@ -58,6 +58,8 @@ public class EvaluatingCustomerCharacter {
     public void theCustomersCharacterIsGettingRejected() {
     }
 
+    
+
 
 
 }
