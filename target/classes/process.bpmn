@@ -34,7 +34,7 @@
       <bpmn:outgoing>Flow_14g710z</bpmn:outgoing>
       <bpmn:outgoing>Flow_1oicjjb</bpmn:outgoing>
     </bpmn:exclusiveGateway>
-    <bpmn:userTask id="Activity_1jzkw84" name="Signing the loan agreement" camunda:formKey="embedded:app:forms/SignLoanAgreement.html">
+    <bpmn:userTask id="Activity_1jzkw84" name="Signing the loan agreement" camunda:formKey="embedded:app:forms/AdjustPurpose.html">
       <bpmn:incoming>Flow_0vferj9</bpmn:incoming>
       <bpmn:outgoing>Flow_073bxge</bpmn:outgoing>
     </bpmn:userTask>
@@ -51,7 +51,7 @@
     <bpmn:endEvent id="Event_0kin0sc" name="process finished&#10;&#10;">
       <bpmn:incoming>Flow_0sxefhw</bpmn:incoming>
     </bpmn:endEvent>
-    <bpmn:businessRuleTask id="Activity_0n45q3p" name="Decide who has to approve loan" camunda:resultVariable="decitionmaker" camunda:decisionRef="Decision_0rdhxa7" camunda:mapDecisionResult="singleEntry">
+    <bpmn:businessRuleTask id="Activity_0n45q3p" name="Decide who has to approve loan" camunda:resultVariable="decisionMaker" camunda:decisionRef="Decision_0rdhxa7" camunda:mapDecisionResult="singleEntry">
       <bpmn:incoming>Flow_1dvc8nd</bpmn:incoming>
       <bpmn:outgoing>Flow_1o2pfn6</bpmn:outgoing>
     </bpmn:businessRuleTask>

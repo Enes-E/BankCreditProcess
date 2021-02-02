@@ -41,7 +41,9 @@ public class SetUpLoanProcessIntegrationTest {
     @Test
     public void make_sure_subprocess_gets_integrated(){
         ProcessInstance process = this.runtimeService.startProcessInstanceByKey("Bank-credit-process-process",
-                withVariables("loanAmount", 1000, "customerFirstName", "Thomas", "customerLastName", "Ankermann",
+                withVariables("loanAmount", 1000,
+                        "customerFirstName", "Thomas",
+                        "customerLastName", "Ankermann",
                         "loanPurpose", "New Car",
                         "decisionMaker", "Manfred Mueller",
                         "approved", "True"));
