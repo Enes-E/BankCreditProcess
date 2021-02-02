@@ -50,7 +50,7 @@ public class CheckCustomerName {
     }
 
     @Given("The customer {string} {string} gives his firstname and lastname.")
-    public void theCustomerMaxHeermannGivesHisFirstnameAndLastname(String firstName, String lastName) {
+    public void theCustomerMaxHeermannGivesHiCsFirstnameAndLastname(String firstName, String lastName) {
         this.instance = this.runtimeService.startProcessInstanceByKey("Bank-credit-process-process",
                 withVariables("loanAmount", 1000, "customerFirstName", firstName, "customerLastName", lastName,
                         "loanPurpose", "New Car",

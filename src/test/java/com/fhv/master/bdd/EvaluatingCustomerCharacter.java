@@ -46,21 +46,18 @@ public class EvaluatingCustomerCharacter {
         System.out.println("Stopping a InvoiceProcess scenario");
     }
 
-    @Given("The customer 'Manfred' 'Stein' gives his firstname and lastname as registration.")
-    public void theCustomerMaxHeermannWantsALoanOf() {
-        this.instance = this.runtimeService.startProcessInstanceByKey("Bank-credit-process-process");
-        assertThat(this.instance).isNotNull();
-        assertThat(this.instance).isStarted();
+    @Given("The customer {string} {string} gives his firstname and lastname as registration.")
+    public void theCustomerManfredSteinGivesHisFirstnameAndLastnameAsRegistration(String firstName, String lastName) {
     }
 
     @When("Customer gets character evaluated")
-    public void theCustomersLoanPurposeOfBuyingACarIsCollected(String purpose, Float amount) {
-
+    public void customerGetsCharacterEvaluated() {
     }
 
     @Then("The customers character is getting rejected")
-    public void theDecisionMakerHasToBeManfredMueller(String decisionMaker) {
-
+    public void theCustomersCharacterIsGettingRejected() {
     }
+
+
 
 }
