@@ -34,13 +34,14 @@
       <bpmn:outgoing>Flow_14g710z</bpmn:outgoing>
       <bpmn:outgoing>Flow_1oicjjb</bpmn:outgoing>
     </bpmn:exclusiveGateway>
-    <bpmn:userTask id="Activity_1jzkw84" name="Signing the loan agreement" camunda:formKey="embedded:app:forms/AdjustPurpose.html">
+    <bpmn:userTask id="Activity_1jzkw84" name="Signing the loan agreement" camunda:formKey="embedded:app:forms/SignLoanAgreement.html">
       <bpmn:incoming>Flow_0vferj9</bpmn:incoming>
       <bpmn:outgoing>Flow_073bxge</bpmn:outgoing>
     </bpmn:userTask>
     <bpmn:userTask id="Activity_1b6q5xx" name="Decline request" camunda:formKey="embedded:app:forms/DeclineRequest.html">
       <bpmn:incoming>Flow_1ktwz80</bpmn:incoming>
       <bpmn:incoming>Flow_14g710z</bpmn:incoming>
+      <bpmn:incoming>Flow_0sxefhw</bpmn:incoming>
       <bpmn:outgoing>Flow_022pf37</bpmn:outgoing>
     </bpmn:userTask>
     <bpmn:exclusiveGateway id="Gateway_1qbn54w" name="successfull">
@@ -48,9 +49,6 @@
       <bpmn:outgoing>Flow_0sxefhw</bpmn:outgoing>
       <bpmn:outgoing>Flow_19k4nfa</bpmn:outgoing>
     </bpmn:exclusiveGateway>
-    <bpmn:endEvent id="Event_0kin0sc" name="process finished&#10;&#10;">
-      <bpmn:incoming>Flow_0sxefhw</bpmn:incoming>
-    </bpmn:endEvent>
     <bpmn:businessRuleTask id="Activity_0n45q3p" name="Decide who has to approve loan" camunda:resultVariable="decisionMaker" camunda:decisionRef="Decision_0rdhxa7" camunda:mapDecisionResult="singleEntry">
       <bpmn:incoming>Flow_1dvc8nd</bpmn:incoming>
       <bpmn:outgoing>Flow_1o2pfn6</bpmn:outgoing>
@@ -93,7 +91,7 @@
     <bpmn:sequenceFlow id="Flow_19k4nfa" name="yes" sourceRef="Gateway_1qbn54w" targetRef="Activity_1dn6i8y">
       <bpmn:conditionExpression xsi:type="bpmn:tFormalExpression">${successfull}</bpmn:conditionExpression>
     </bpmn:sequenceFlow>
-    <bpmn:sequenceFlow id="Flow_0sxefhw" name="no" sourceRef="Gateway_1qbn54w" targetRef="Event_0kin0sc">
+    <bpmn:sequenceFlow id="Flow_0sxefhw" name="no" sourceRef="Gateway_1qbn54w" targetRef="Activity_1b6q5xx">
       <bpmn:conditionExpression xsi:type="bpmn:tFormalExpression">${!successfull}</bpmn:conditionExpression>
     </bpmn:sequenceFlow>
     <bpmn:sequenceFlow id="Flow_0uty0op" name="no&#10;&#10;" sourceRef="Gateway_1vnuaud" targetRef="Activity_16ps1mf">
@@ -181,9 +179,11 @@
       </bpmndi:BPMNEdge>
       <bpmndi:BPMNEdge id="Flow_0sxefhw_di" bpmnElement="Flow_0sxefhw">
         <di:waypoint x="1465" y="220" />
-        <di:waypoint x="1692" y="220" />
+        <di:waypoint x="1530" y="220" />
+        <di:waypoint x="1530" y="610" />
+        <di:waypoint x="2250" y="610" />
         <bpmndi:BPMNLabel>
-          <dc:Bounds x="1489" y="202" width="13" height="14" />
+          <dc:Bounds x="1621" y="592" width="13" height="14" />
         </bpmndi:BPMNLabel>
       </bpmndi:BPMNEdge>
       <bpmndi:BPMNEdge id="Flow_19k4nfa_di" bpmnElement="Flow_19k4nfa">
@@ -269,13 +269,7 @@
       <bpmndi:BPMNShape id="Gateway_1qbn54w_di" bpmnElement="Gateway_1qbn54w" isMarkerVisible="true">
         <dc:Bounds x="1415" y="195" width="50" height="50" />
         <bpmndi:BPMNLabel>
-          <dc:Bounds x="1413" y="255" width="55" height="14" />
-        </bpmndi:BPMNLabel>
-      </bpmndi:BPMNShape>
-      <bpmndi:BPMNShape id="Event_0kin0sc_di" bpmnElement="Event_0kin0sc">
-        <dc:Bounds x="1692" y="202" width="36" height="36" />
-        <bpmndi:BPMNLabel>
-          <dc:Bounds x="1670" y="245" width="80" height="40" />
+          <dc:Bounds x="1413" y="255" width="54" height="14" />
         </bpmndi:BPMNLabel>
       </bpmndi:BPMNShape>
       <bpmndi:BPMNShape id="Activity_113twj1_di" bpmnElement="Activity_0n45q3p">

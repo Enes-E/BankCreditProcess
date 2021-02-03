@@ -70,7 +70,7 @@ public class SetupLoanAgreement implements JavaDelegate {
                                 String decisionMaker) {
 
         StringBuilder stb = new StringBuilder();
-        stb.append("Loan aggrement for: ");
+        stb.append("Loan agreement for: ");
         stb.append(customerFirstName);
         stb.append(" ");
         stb.append(customerLastName);
@@ -79,11 +79,11 @@ public class SetupLoanAgreement implements JavaDelegate {
         stb.append(loanPurpose);
         stb.append("\n Amount: ");
         stb.append(loanAmount);
-//        stb.append("\n Signed by: ");
-//        stb.append(decisionMaker);
+        stb.append("\n Signed by: ");
+        stb.append(decisionMaker);
 
         try {
-            Files.write(Paths.get("LoanAgreement.txt"), stb.toString().getBytes(), StandardOpenOption.WRITE);
+            Files.write(Paths.get("LoanAgreement.txt"), stb.toString().getBytes());
         }catch (IOException e) {
             LOGGER.warning(e.getMessage());
         }
